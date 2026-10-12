@@ -31,6 +31,26 @@ final int renewAttempts = 2 + u; // renewal attempts made in Step 5
 final int shelfSize = 3 + u % 4; // items on the shelf in Steps 9-10
 // ===========================================================================
 
+// Parent class: common information for library items.
+class LibraryItem {
+  final String title;
+  final int year;
+
+  LibraryItem(this.title, this.year);
+}
+
+// Child class: a Book has all LibraryItem fields plus pages.
+class Book extends LibraryItem {
+  final int pages;
+
+  Book(super.title, super.year, this.pages);
+}
+
+// Creates the main book used in the lab.
+Book mainBook() {
+  return Book(titles[u], yearOf(u), 100 + 3 * seed);
+}
+
 void main() {
   print('Seed: $seed (t=$t, u=$u)');
   step1();
@@ -47,6 +67,16 @@ void main() {
 
 void step1() {
   print('--- Step 1 ---');
+
+  final Book b = mainBook();
+  final LibraryItem item = b;
+
+  print('Step 1: ${b.title} (${b.year}), ${b.pages} pages');
+  print('Step 1: stored as LibraryItem: ${item.title}');
+  print('Step 1: runtimeType = ${item.runtimeType}');
+
+  // Think: item.pages is a compile error because LibraryItem
+  // does not declare a pages field.
 }
 
 void step2() {
