@@ -1,0 +1,44 @@
+Seed: 24 (t=2, u=4)
+--- Step 1 ---
+Step 1: Mobile Design (2005), 172 pages
+Step 1: stored as LibraryItem: Mobile Design
+Step 1: runtimeType = Book
+--- Step 2 ---
+Step 2: Mobile Design (2005), 172 pages
+Step 2: Clean Code (2007), issue 7
+--- Step 3 ---
+Step 3: Book late fee for 3 days = 21
+Step 3: Magazine late fee for 3 days = 9
+Step 3: Dvd late fee for 3 days = 42
+--- Step 4 ---
+Step 4: available? true
+Step 4: after borrow? false
+Step 4: after return? true
+Step 4: Book borrowable? true
+Step 4: Magazine borrowable? false
+Step 4: Dvd borrowable? false
+--- Step 5 ---
+Step 5: renewed 3 of 6 attempts (limit 3)
+Step 5: renew once more? false
+Step 5: dvd can renew too? true
+--- Step 6 ---
+Step 6: member type = student (index 0)
+Step 6: max loans = 3
+Step 6: book fee 21 -> 10 after discount
+--- Step 7 ---
+Step 7: Rs 10
+Step 7: initials of "Mobile Design" = MD
+Step 7: shelf fee for 3 days = Rs 72
+--- Step 8 ---
+Step 8: Fine(21) + Fine(9) = Fine(30)
+Step 8: first bigger? true
+Step 8: set size = 2
+--- Step 9 ---
+Step 9: items created = 6
+Step 9: capped fee = 98 (cap 170)
+Step 9: const copies identical? true
+Step 9: new copies identical? false
+--- Step 10 ---
+Step 10: 3 items, 1 borrowable, 2 renewable
+Step 10: S24 (student) owes Fine(35)
+Step 10: over the cap? false
