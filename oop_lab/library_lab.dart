@@ -37,6 +37,8 @@ class LibraryItem {
   final int year;
 
   LibraryItem(this.title, this.year);
+
+  String describe() => '$title ($year)';
 }
 
 // Child class: a Book has all LibraryItem fields plus pages.
@@ -44,11 +46,33 @@ class Book extends LibraryItem {
   final int pages;
 
   Book(super.title, super.year, this.pages);
+
+  @override
+  String describe() {
+    return '${super.describe()}, $pages pages';
+  }
 }
 
 // Creates the main book used in the lab.
 Book mainBook() {
   return Book(titles[u], yearOf(u), 100 + 3 * seed);
+}
+
+class Magazine extends LibraryItem {
+  final int issue;
+
+  Magazine(super.title, super.year, this.issue);
+
+  @override
+  String describe() {
+    return '${super.describe()}, issue $issue';
+  }
+}
+
+Magazine mainMagazine() {
+  final int i = (u + 1) % 10;
+
+  return Magazine(titles[i], yearOf(i), 1 + (t + u) % 12);
 }
 
 void main() {
@@ -81,6 +105,12 @@ void step1() {
 
 void step2() {
   print('--- Step 2 ---');
+
+  print('Step 2: ${mainBook().describe()}');
+  print('Step 2: ${mainMagazine().describe()}');
+
+  // Think: if describe() is misspelled as descibe(),
+  // it will not override the parent's describe() method.
 }
 
 void step3() {
