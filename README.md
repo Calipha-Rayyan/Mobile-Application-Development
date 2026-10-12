@@ -1,15 +1,13 @@
-# Mobile Application Development
+# Mobile Application Development (MAD)
 
-A centralized repository for **Mobile Application Development (MAD)** coursework, lab tasks, Dart practice programs, and small course projects.
+A centralized repository for coursework, lab assignments, Dart practice programs, and projects developed as part of the **Mobile Application Development** course at Quaid-i-Azam University, Islamabad.
 
-This repository keeps all MAD work in one place, organized by project folders and individual Dart exercises. It is intended to make course work easy to maintain, review, and submit.
+This repository organizes practical work in one place, making it easier to develop, maintain, review, and submit coursework while tracking progress through Git and GitHub.
 
-## Repository Overview
-
-The repository currently contains:
+## Repository Structure
 
 ```text
-Mobile Application Development/
+Mobile-Application-Development/
 │
 ├── Campus Cafe Order System/
 │   ├── Campus_Cafe_Order_System.dart
@@ -21,27 +19,44 @@ Mobile Application Development/
 │   └── README.md
 │
 ├── Library Desk Assistant/
-│   ├── image-1.png
-│   ├── image.png
 │   ├── Library_Desk_Assistant.dart
+│   ├── image.png
+│   ├── image-1.png
 │   └── README.md
 │
-├── my_first_app
+├── oop_lab/
+│   ├── library_lab.dart
+│   ├── ANSWERS.md
+│   └── output.txt
+│
+├── my_first_app/
+│
+├── Animal.dart
+├── Animal1.dart
+├── equalequal.dart
 ├── Hello_Dart.dart
 ├── input_output.dart
 ├── interpolation.dart
-└── safety_null.dart
+├── logging.dart
+├── MixExample.dart
+├── Overloading.dart
+├── PaymentMethod.dart
+├── safety_null.dart
+├── Shape.dart
+└── README.md
 ```
 
-## Projects and Practice Work
+*Note: The structure above summarizes the known projects and files. Update it when the repository changes.*
+
+## Projects and Lab Assignments
 
 ### 1. Campus Cafe Order System
 
-A Dart-based lab project focused on object-oriented programming concepts such as:
+A Dart-based project that demonstrates object-oriented programming and a simple cafe ordering workflow.
 
+**Concepts covered:**
 - Classes and objects
-- Constructors
-- Named constructors
+- Constructors and named constructors
 - Factory constructors
 - Initializer lists
 - Assertions
@@ -50,111 +65,161 @@ A Dart-based lab project focused on object-oriented programming concepts such as
 - Receipt generation
 - Discount coupons
 
-Main file:
-
-```text
-Campus_Cafe_Order_System.dart
-```
+**Main file:** `Campus_Cafe_Order_System.dart`
 
 ### 2. Course Roster Manager
 
-A Dart course task/project related to managing course roster information.
+A course project focused on organizing and managing course roster information using Dart.
 
-Main file:
-
-```text
-course_roster.dart
-```
+**Main file:** `course_roster.dart`
 
 ### 3. Library Desk Assistant
 
-A Dart-based course project for a library desk assistant workflow.
+A Dart-based lab project that models a library desk assistant workflow and applies programming fundamentals to a practical scenario.
 
-Main file:
+**Main file:** `Library_Desk_Assistant.dart`
 
-```text
-Library_Desk_Assistant.dart
-```
+Supporting images and project documentation are maintained alongside the project files.
 
-Supporting images and project documentation are kept inside the same folder.
+### 4. Campus Library System — OOP Lab
 
-## Dart Practice Files
+This lab focuses on object-oriented programming concepts through a small library management system.
 
-The repository also contains small beginner-level Dart programs for practicing core language concepts:
+**Main file:** `oop_lab/library_lab.dart`
 
-| File | Focus |
+**Topics covered:**
+- Inheritance and method overriding
+- Abstract classes and interfaces
+- Mixins and enhanced enums
+- Extension methods
+- Operator overloading
+- Equality and hash codes
+- Static members and constant objects
+- Late-fee calculation and member discounts
+
+**Supporting files:**
+- `ANSWERS.md` — reflection answers
+- `output.txt` — program output
+
+### 5. Dart Practice Programs
+
+The repository also contains individual Dart programs for practicing core language concepts.
+
+| File | Purpose |
 |---|---|
-| `my_first_app` | Basic application setup/practice |
-| `Hello_Dart.dart` | First Dart program |
+| `Hello_Dart.dart` | Basic Dart program |
 | `input_output.dart` | Input and output |
 | `interpolation.dart` | String interpolation |
 | `safety_null.dart` | Null safety |
+| `Animal.dart` and `Animal1.dart` | Animal-related class exercises |
+| `equalequal.dart` | Equality operator practice |
+| `logging.dart` | Logging practice |
+| `MixExample.dart` | Mixin examples |
+| `Overloading.dart` | Operator overloading |
+| `PaymentMethod.dart` | Payment method and class concepts |
+| `Shape.dart` | Shape-related class exercises |
+| `my_first_app/` | Application practice |
 
 ## Getting Started
 
-Make sure the **Dart SDK** is installed and available in your terminal.
+### Prerequisites
 
-Check the installation:
+Install the Dart SDK and Git, and use an editor such as Visual Studio Code.
+
+Check that Dart is available in your terminal:
 
 ```powershell
 dart --version
 ```
 
-For an individual Dart file, run:
+### Run a Dart Program
+
+For a root-level Dart file:
 
 ```powershell
-dart run filename.dart
+dart run Hello_Dart.dart
 ```
 
 For the Campus Cafe Order System:
 
 ```powershell
-dart run --enable-asserts Campus_Cafe_Order_System.dart
+dart run --enable-asserts "Campus Cafe Order System/Campus_Cafe_Order_System.dart"
 ```
 
-For formatting and code analysis:
+For the Campus Library System lab:
+
+```powershell
+dart run --enable-asserts oop_lab/library_lab.dart
+```
+
+### Format and Analyze Code
+
+Format the repository's Dart files:
 
 ```powershell
 dart format .
-dart analyze
 ```
+
+Analyze the Dart code:
+
+```powershell
+dart analyze .
+```
+
+Review and resolve relevant errors or warnings before submitting coursework.
+
+## Git and GitHub Workflow
+
+Keep changes organized and use meaningful commit messages that describe the work completed.
+
+Check the current changes:
+
+```powershell
+git status
+```
+
+Stage a specific file:
+
+```powershell
+git add README.md
+```
+
+Create a meaningful commit:
+
+```powershell
+git commit -m "docs: improve repository documentation"
+```
+
+Push committed changes to GitHub:
+
+```powershell
+git push origin main
+```
+
+For labs with required checkpoints, follow the instructor's specified commit order and message format.
 
 ## Repository Organization
 
-The repository follows a simple structure:
+The repository uses a simple structure:
 
-- **Project folders** contain the source code, supporting files, and project-specific README files.
-- **Root-level Dart files** contain smaller practice exercises and individual language concepts.
-- **Images** are stored inside their related project folder when they are part of that project.
+- **Project folders** contain related source code, documentation, and supporting files.
+- **Root-level Dart files** contain smaller practice exercises.
+- **Lab folders** keep assignment code, reflection answers, and output files together.
+- **Git history** records changes and helps track development progress.
 
-This structure keeps all MAD coursework inside one repository while still separating each project clearly.
+## Technology Stack
+
+- Dart
+- Dart SDK
+- Git
+- GitHub
+- Visual Studio Code
 
 ## Purpose
 
-The main goal of this repository is to maintain a complete and organized record of **Mobile Application Development** coursework in a single GitHub repository.
+The goal of this repository is to maintain an organized record of Mobile Application Development coursework, including lab submissions, individual programming exercises, and small projects.
 
-It can be used for:
-
-- Course submissions
-- Lab work
-- Practice exercises
-- Project development
-- Version control and progress tracking
-- Future reference and revision
-
-## Tech Stack
-
-- **Dart**
-- **Dart SDK**
-- **Git**
-- **GitHub**
-- **VS Code**
-
-## Development Approach
-
-The projects in this repository are developed step by step while learning the fundamentals of mobile application development and Dart programming.
-
-Code is kept simple and readable, with emphasis on understanding the concepts before moving to more advanced implementations.
+It serves as a reference for revision, practical learning, debugging, project development, and version-controlled coursework submission.
 
 ## Author
 
@@ -165,4 +230,4 @@ Quaid-i-Azam University, Islamabad
 
 ## Repository
 
-**Mobile Application Development**
+[Mobile Application Development — GitHub](https://github.com/Calipha-Rayyan/Mobile-Application-Development)
