@@ -31,17 +31,20 @@ final int renewAttempts = 2 + u; // renewal attempts made in Step 5
 final int shelfSize = 3 + u % 4; // items on the shelf in Steps 9-10
 // ===========================================================================
 
-// Parent class: common information for library items.
-class LibraryItem {
+// Parent class for all library items.
+abstract class LibraryItem {
   final String title;
   final int year;
 
   LibraryItem(this.title, this.year);
 
   String describe() => '$title ($year)';
+
+  // Every child class must implement this method.
+  int lateFee(int days);
 }
 
-// Child class: a Book has all LibraryItem fields plus pages.
+// Book class.
 class Book extends LibraryItem {
   final int pages;
 
@@ -51,13 +54,14 @@ class Book extends LibraryItem {
   String describe() {
     return '${super.describe()}, $pages pages';
   }
+
+  @override
+  int lateFee(int days) {
+    return days * feePerDay;
+  }
 }
 
-// Creates the main book used in the lab.
-Book mainBook() {
-  return Book(titles[u], yearOf(u), 100 + 3 * seed);
-}
-
+// Magazine class.
 class Magazine extends LibraryItem {
   final int issue;
 
@@ -67,12 +71,45 @@ class Magazine extends LibraryItem {
   String describe() {
     return '${super.describe()}, issue $issue';
   }
+
+  @override
+  int lateFee(int days) {
+    return days * (feePerDay ~/ 2);
+  }
+}
+
+// DVD class.
+class Dvd extends LibraryItem {
+  final int minutes;
+
+  Dvd(super.title, super.year, this.minutes);
+
+  @override
+  String describe() {
+    return '${super.describe()}, $minutes min';
+  }
+
+  @override
+  int lateFee(int days) {
+    return days * feePerDay * 2;
+  }
+}
+
+// Helper functions.
+Book mainBook() {
+  return Book(titles[u], yearOf(u), 100 + 3 * seed);
 }
 
 Magazine mainMagazine() {
   final int i = (u + 1) % 10;
 
   return Magazine(titles[i], yearOf(i), 1 + (t + u) % 12);
+}
+
+Dvd mainDvd() {
+  final int i = (u + 2) % 10;
+
+  return Dvd(titles[i], yearOf(i), 90 + seed % 40);
 }
 
 void main() {
@@ -115,6 +152,24 @@ void step2() {
 
 void step3() {
   print('--- Step 3 ---');
+
+  print(
+    'Step 3: Book late fee for $daysLate days = '
+    '${mainBook().lateFee(daysLate)}',
+  );
+
+  print(
+    'Step 3: Magazine late fee for $daysLate days = '
+    '${mainMagazine().lateFee(daysLate)}',
+  );
+
+  print(
+    'Step 3: Dvd late fee for $daysLate days = '
+    '${mainDvd().lateFee(daysLate)}',
+  );
+
+  // Think: an abstract class cannot be instantiated directly
+  // because it may contain methods without implementations.
 }
 
 void step4() {
