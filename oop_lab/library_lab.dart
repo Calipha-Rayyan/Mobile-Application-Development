@@ -177,6 +177,32 @@ extension ShelfMath on List<LibraryItem> {
   }
 }
 
+// Fine Class
+class Fine {
+  final int amount;
+
+  const Fine(this.amount);
+
+  Fine operator +(Fine other) {
+    return Fine(amount + other.amount);
+  }
+
+  bool operator >(Fine other) {
+    return amount > other.amount;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is Fine && amount == other.amount;
+  }
+
+  @override
+  int get hashCode => amount.hashCode;
+
+  @override
+  String toString() => 'Fine($amount)';
+}
+
 void main() {
   print('Seed: $seed (t=$t, u=$u)');
   step1();
@@ -324,6 +350,19 @@ void step7() {
 
 void step8() {
   print('--- Step 8 ---');
+
+  final Fine f1 = Fine(mainBook().lateFee(daysLate));
+  final Fine f2 = Fine(mainMagazine().lateFee(daysLate));
+
+  final Set<Fine> fines = {f1, Fine(f1.amount), f2};
+
+  print('Step 8: $f1 + $f2 = ${f1 + f2}');
+  print('Step 8: first bigger? ${f1 > f2}');
+  print('Step 8: equal copies? ${f1 == Fine(f1.amount)}');
+  print('Step 8: set size = ${fines.length}');
+
+  // Think: hashCode must agree with == for sets and maps
+  // to recognise equal values correctly.
 }
 
 void step9() {
