@@ -254,10 +254,13 @@ class Countdown extends StatefulWidget {
 class _CountdownState extends State<Countdown> {
   late int _left;
   late Timer _timer;
+  int _builds = 0;
 
   @override
   void initState() {
     super.initState();
+
+    lifecycleLog.add('initState');
 
     _left = startSeconds;
 
@@ -273,14 +276,28 @@ class _CountdownState extends State<Countdown> {
   @override
   void dispose() {
     _timer.cancel();
+    lifecycleLog.add('dispose');
     super.dispose();
   }
 
+// Each timer tick calls setState once, so build runs once per second.
+// Print lifecycleLog in dispose after adding 'dispose' to verify the log.
   @override
   Widget build(BuildContext context) {
-    return Text(
-      _left > 0 ? 'Time left: $_left s' : 'Time is up!',
-      key: const Key('time-left'),
+    _builds++;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          _left > 0 ? 'Time left: $_left s' : 'Time is up!',
+          key: const Key('time-left'),
+        ),
+        Text(
+          'Builds: $_builds',
+          key: const Key('builds'),
+        ),
+      ],
     );
   }
 }
