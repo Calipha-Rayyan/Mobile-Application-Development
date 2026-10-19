@@ -1,10 +1,9 @@
-// main.dart - Study Tracker lab
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 const String studentName = 'Muhammad Rayyan Bhatti';
-const String rollNo = '04072312024'; // e.g. '21F-0347'
+const String rollNo = '04072312024';
 
 // ===== Seeded settings (generated from YOUR roll number). Do not edit. =====
 final int seed = int.parse(rollNo.substring(rollNo.length - 2));
@@ -12,16 +11,24 @@ final int t = seed ~/ 10; // tens digit
 final int u = seed % 10; // units digit
 
 const List<String> courses = [
-  'Mobile Dev', 'Data Structures', 'Operating Systems', 'Databases',
-  'Networks', 'Software Eng', 'AI', 'Web Engineering', 'Graphics', 'Security',
+  'Mobile Dev',
+  'Data Structures',
+  'Operating Systems',
+  'Databases',
+  'Networks',
+  'Software Eng',
+  'AI',
+  'Web Engineering',
+  'Graphics',
+  'Security',
 ];
 
-final String course = courses[u]; // your course name
-final int startCount = 3 + u; // where the tally starts
-final int stepSize = 1 + t % 4; // how much + and - change the tally
-final int maxCount = 20 + 2 * t; // the tally may never go above this
-final int startSeconds = 5 + (t + u) % 6; // where the countdown starts
-final int bugStep = 1 + u % 4; // used by BuggyCounter in Step 7
+final String course = courses[u];
+final int startCount = 3 + u;
+final int stepSize = 1 + t % 4;
+final int maxCount = 20 + 2 * t;
+final int startSeconds = 5 + (t + u) % 6;
+final int bugStep = 1 + u % 4;
 // ===========================================================================
 
 // Step 9 writes to this list from initState and dispose.
@@ -29,73 +36,56 @@ final List<String> lifecycleLog = <String>[];
 
 void main() => runApp(const LabApp());
 
-// Keep the name LabApp and its const constructor.
+// Stateless: Configures the root application.
 class LabApp extends StatelessWidget {
   const LabApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     // runApp receives LabApp; MaterialApp.home specifies HomePage.
-    return const MaterialApp(
-      title: 'Study Tracker',
-      home: HomePage(),
-    );
+    return const MaterialApp(title: 'Study Tracker', home: HomePage());
   }
 }
 
+// Stateless: Arranges the widgets on the screen.
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Study Tracker: $course'),
-      ),
+      appBar: AppBar(title: Text('Study Tracker: $course')),
       body: SingleChildScrollView(
-  padding: const EdgeInsets.all(16),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      StudentCard(
-        name: studentName,
-        roll: rollNo,
-        course: course,
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            StudentCard(name: studentName, roll: rollNo, course: course),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Start: $startCount', key: const Key('info-start')),
+                Text('Step: $stepSize', key: const Key('info-step')),
+                Text('Max: $maxCount', key: const Key('info-max')),
+              ],
+            ),
+            // Counting LabApp as level 1, Text('Max: ...') is level 8.
+            // This means there are 7 parent-child edges from LabApp.
+            const SizedBox(height: 12),
+            const Tally(),
+            const SizedBox(height: 12),
+            const Countdown(),
+            const SizedBox(height: 12),
+            const BuggyCounter(),
+          ],
+        ),
       ),
-      const SizedBox(height: 12),
-
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Start: $startCount',
-            key: const Key('info-start'),
-          ),
-          Text(
-            'Step: $stepSize',
-            key: const Key('info-step'),
-          ),
-          Text(
-            'Max: $maxCount',
-            key: const Key('info-max'),
-          ),
-        ],
-      ),
-
-      const SizedBox(height: 12),
-      const Tally(),
-      const SizedBox(height: 12),
-      const Countdown(),
-      const SizedBox(height: 12),
-      const BuggyCounter(),
-    ],
-  ),
-),
     );
   }
 }
 
-// Stateless: This widget displays fixed student information.
+// Stateless: Displays the supplied student information.
 class StudentCard extends StatelessWidget {
   final String name;
   final String roll;
@@ -108,6 +98,9 @@ class StudentCard extends StatelessWidget {
     required this.course,
   });
 
+  // The fields are final to keep the widget configuration immutable.
+  // Removing final while keeping this const constructor causes a
+  // compile-time error because const constructors require final fields.
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -116,18 +109,9 @@ class StudentCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Name: $name',
-              key: const Key('student-name'),
-            ),
-            Text(
-              'Roll no: $roll',
-              key: const Key('student-roll'),
-            ),
-            Text(
-              'Course: $course',
-              key: const Key('student-course'),
-            ),
+            Text('Name: $name', key: const Key('student-name')),
+            Text('Roll no: $roll', key: const Key('student-roll')),
+            Text('Course: $course', key: const Key('student-course')),
           ],
         ),
       ),
@@ -135,20 +119,15 @@ class StudentCard extends StatelessWidget {
   }
 }
 
-
-// Stateless: Displays progress using the values passed to it.
+// Stateless: Displays progress using the supplied values.
 class GoalBanner extends StatelessWidget {
   final int count;
   final int max;
 
-  const GoalBanner({
-    super.key,
-    required this.count,
-    required this.max,
-  });
-// GoalBanner does not need setState because it receives count and max.
-// To show a new count, its parent must rebuild it with the updated values.
+  const GoalBanner({super.key, required this.count, required this.max});
 
+  // GoalBanner does not need setState because it receives count and max.
+  // Its parent can rebuild it with updated values to show new progress.
   @override
   Widget build(BuildContext context) {
     final percent = count * 100 ~/ max;
@@ -160,9 +139,7 @@ class GoalBanner extends StatelessWidget {
   }
 }
 
-
-// Stateful: Tally creates the widget configuration;
-// _TallyState stores and updates the changing count.
+// Stateful: Its State stores and updates the changing tally.
 class Tally extends StatefulWidget {
   const Tally({super.key});
 
@@ -170,12 +147,12 @@ class Tally extends StatefulWidget {
   State<Tally> createState() => _TallyState();
 }
 
-
-// Hot reload normally preserves the existing State and its count.
-// Hot restart recreates the app and resets the count to startCount.
+// _TallyState stores the changing count separately from the widget.
 class _TallyState extends State<Tally> {
   int _count = startCount;
 
+  // Hot reload normally preserves State and its count.
+  // Hot restart recreates the app and resets the count to startCount.
   void _plus() {
     setState(() {
       _count += stepSize;
@@ -207,14 +184,8 @@ class _TallyState extends State<Tally> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Count: $_count',
-          key: const Key('count'),
-        ),
-        GoalBanner(
-          count: _count,
-          max: maxCount,
-        ),
+        Text('Count: $_count', key: const Key('count')),
+        GoalBanner(count: _count, max: maxCount),
         Row(
           children: [
             ElevatedButton(
@@ -241,8 +212,7 @@ class _TallyState extends State<Tally> {
   }
 }
 
-
-// Stateful: Countdown stores the remaining time and updates it every second.
+// Stateful: Its State manages the remaining time and countdown timer.
 class Countdown extends StatefulWidget {
   const Countdown({super.key});
 
@@ -250,7 +220,6 @@ class Countdown extends StatefulWidget {
   State<Countdown> createState() => _CountdownState();
 }
 
-// The timer must be cancelled to prevent setState() after dispose().
 class _CountdownState extends State<Countdown> {
   late int _left;
   late Timer _timer;
@@ -277,13 +246,14 @@ class _CountdownState extends State<Countdown> {
   void dispose() {
     _timer.cancel();
     lifecycleLog.add('dispose');
+
+    // Printing lifecycleLog here would show that dispose ran.
     super.dispose();
   }
 
-// Each timer tick calls setState once, so build runs once per second.
-// Print lifecycleLog in dispose after adding 'dispose' to verify the log.
   @override
   Widget build(BuildContext context) {
+    // Each timer tick triggers one setState and one rebuild.
     _builds++;
 
     return Column(
@@ -293,17 +263,13 @@ class _CountdownState extends State<Countdown> {
           _left > 0 ? 'Time left: $_left s' : 'Time is up!',
           key: const Key('time-left'),
         ),
-        Text(
-          'Builds: $_builds',
-          key: const Key('builds'),
-        ),
+        Text('Builds: $_builds', key: const Key('builds')),
       ],
     );
   }
 }
 
-
-// ---- Provided for Step 7. It has a bug on purpose. Do not rename anything.
+// Stateful: Its State tracks and updates button clicks.
 class BuggyCounter extends StatefulWidget {
   const BuggyCounter({super.key});
 
@@ -314,8 +280,6 @@ class BuggyCounter extends StatefulWidget {
 class _BuggyCounterState extends State<BuggyCounter> {
   int _clicks = 0;
 
-// Before the fix, after 3 taps, _clicks was 3,
-// but the screen still displayed 0.
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -325,6 +289,8 @@ class _BuggyCounterState extends State<BuggyCounter> {
         ElevatedButton(
           key: const Key('bug-button'),
           onPressed: () {
+            // Without setState, _clicks changed internally after 3 taps,
+            // but the screen still displayed 0.
             setState(() {
               _clicks += bugStep;
             });
