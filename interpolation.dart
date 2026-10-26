@@ -27,5 +27,5 @@ void main() {
   var e = 'Adam is good';
   var f;
   if (e.isEmpty) print(e.split(' '));
-  //print("e after split is:  $f");
+print("e after split is:  $f");
 }

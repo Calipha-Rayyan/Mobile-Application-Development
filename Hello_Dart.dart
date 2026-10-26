@@ -1,6 +1,6 @@
 void main(List<String> args) {
-  //  List<String> names = ["Ali", 'Ahmad', 'Adam'];
-  //  for (var name in names) helloDart(name);
+    List<String> names = ["Ali", 'Ahmad', 'Adam'];
+    for (var name in names) helloDart(name);
 
   if (args.isEmpty) {
     print("Its empty");
@@ -9,6 +9,6 @@ void main(List<String> args) {
   }
 }
 
-//void helloDart(String name) {
-//  print("Hello, $name");
-//}
+void helloDart(String name) {
+  print("Hello, $name");
+}
