@@ -1,6 +1,7 @@
 // main.dart - Team Board lab
 
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 const String studentName = 'Muhammad Rayyan Bhatti';
@@ -12,12 +13,25 @@ final int t = seed ~/ 10; // tens digit
 final int u = seed % 10; // units digit
 
 const List<String> courses = [
-  'Mobile Dev', 'Data Structures', 'Operating Systems', 'Databases',
-  'Networks', 'Software Eng', 'AI', 'Web Engineering', 'Graphics', 'Security',
+  'Mobile Dev',
+  'Data Structures',
+  'Operating Systems',
+  'Databases',
+  'Networks',
+  'Software Eng',
+  'AI',
+  'Web Engineering',
+  'Graphics',
+  'Security',
 ];
 const List<String> names = ['Ali', 'Sara', 'Omar', 'Hina', 'Zain', 'Maya'];
 const List<String> mains = [
-  'start', 'center', 'end', 'spaceBetween', 'spaceAround', 'spaceEvenly',
+  'start',
+  'center',
+  'end',
+  'spaceBetween',
+  'spaceAround',
+  'spaceEvenly',
 ];
 const List<String> crosses = ['start', 'center', 'end'];
 const List<String> hues = ['teal', 'indigo', 'orange', 'pink', 'green'];
@@ -125,11 +139,11 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 12),
 
             const SizedBox(height: 12),
-                const InfoPanel(),
-                const SizedBox(height: 12),
+            const InfoPanel(),
+            const SizedBox(height: 12),
 
-                const SummaryRow(),
-                const SizedBox(height: 12),
+            const SummaryRow(),
+            const SizedBox(height: 12),
           ],
         ),
       ),
@@ -190,13 +204,12 @@ class SummaryRow extends StatelessWidget {
   }
 }
 
-
 class ShareRow extends StatelessWidget {
   const ShareRow({super.key});
 
-// Expanded uses FlexFit.tight, so it fills its allocated space.
-// Flexible defaults to FlexFit.loose, so its child may be smaller.
-// Swapping their positions changes which button gets each layout behaviour.
+  // Expanded uses FlexFit.tight, so it fills its allocated space.
+  // Flexible defaults to FlexFit.loose, so its child may be smaller.
+  // Swapping their positions changes which button gets each layout behaviour.
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -205,10 +218,7 @@ class ShareRow extends StatelessWidget {
         SizedBox(
           key: const Key('fixed'),
           width: fixedW,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text('F'),
-          ),
+          child: ElevatedButton(onPressed: () {}, child: const Text('F')),
         ),
         Expanded(
           flex: flexA,
@@ -231,8 +241,6 @@ class ShareRow extends StatelessWidget {
   }
 }
 
-
-
 class InfoBox extends StatelessWidget {
   const InfoBox({super.key});
 
@@ -247,17 +255,13 @@ class InfoBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(boxRadius),
         border: Border.all(width: boxBorder),
       ),
-      child: Text(
-        'Course: $course',
-        key: const Key('box-text'),
-      ),
+      child: Text('Course: $course', key: const Key('box-text')),
     );
   }
 }
 
-
-class Clock extends StatefulWidget{
-  const Clock ({super.key});
+class Clock extends StatefulWidget {
+  const Clock({super.key});
 
   @override
   _ClockState createState() => _ClockState();
@@ -274,46 +278,37 @@ class _ClockState extends State<Clock> {
 
     lifecycleLog.add('initState');
 
-    _timer = Timer.periodic(
-      const Duration (seconds: 1),
-      (timer){
-        setState((){
-          _seconds += tick;
-        });
-        if (_seconds >= stopAt){
-          timer.cancel();
-        }
-      },
-
-    );
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _seconds += tick;
+      });
+      if (_seconds >= stopAt) {
+        timer.cancel();
+      }
+    });
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _timer.cancel();
     lifecycleLog.add('dispose');
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     _builds++;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Session: $_seconds s',
-          key: const Key('clock'),
-        ),
-        Text('Builds: $_builds',
-        key: const Key('builds'),
-        ),
-        Probe(seconds:_seconds),
+        Text('Session: $_seconds s', key: const Key('clock')),
+        Text('Builds: $_builds', key: const Key('builds')),
+        Probe(seconds: _seconds),
       ],
     );
   }
 }
-
 
 class Probe extends StatelessWidget {
   final int seconds;
@@ -328,10 +323,7 @@ class Probe extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Seen at: $seconds s',
-          key: const Key('probe-seen'),
-        ),
+        Text('Seen at: $seconds s', key: const Key('probe-seen')),
         Text(
           'Widget #${identityHashCode(this)}',
           key: const Key('probe-widget'),
@@ -344,16 +336,11 @@ class Probe extends StatelessWidget {
           'Context belongs to: ${context.widget.runtimeType}',
           key: const Key('probe-context'),
         ),
-        Text(
-          'Scaffold above me: $above',
-          key: const Key('probe-above'),
-        ),
+        Text('Scaffold above me: $above', key: const Key('probe-above')),
       ],
     );
   }
 }
-
-
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -361,15 +348,10 @@ class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Welcome, $studentName',
-        key: const Key('welcome'),
-      ),
+      child: Text('Welcome, $studentName', key: const Key('welcome')),
     );
   }
 }
-
-
 
 class Tile extends StatefulWidget {
   final String label;
@@ -393,8 +375,6 @@ class _TileState extends State<Tile> {
     );
   }
 }
-
-
 
 class SwapBoard extends StatefulWidget {
   const SwapBoard({super.key});
@@ -427,8 +407,6 @@ class _SwapBoardState extends State<SwapBoard> {
   }
 }
 
-
-
 class InfoPanel extends StatelessWidget {
   const InfoPanel({super.key});
 
@@ -442,18 +420,9 @@ class InfoPanel extends StatelessWidget {
           key: const Key('info-row'),
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(
-              'Start: $startSec s',
-              key: const Key('row-a'),
-            ),
-            Text(
-              'Tick: $tick s',
-              key: const Key('row-b'),
-            ),
-            Text(
-              'Stop: $stopAt s',
-              key: const Key('row-c'),
-            ),
+            Text('Start: $startSec s', key: const Key('row-a')),
+            Text('Tick: $tick s', key: const Key('row-b')),
+            Text('Stop: $stopAt s', key: const Key('row-c')),
           ],
         ),
 
@@ -464,26 +433,15 @@ class InfoPanel extends StatelessWidget {
           key: const Key('info-col'),
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              'Name: $studentName',
-              key: const Key('col-a'),
-            ),
-            Text(
-              'Roll no: $rollNo',
-              key: const Key('col-b'),
-            ),
-            Text(
-              'Course: $course',
-              key: const Key('col-c'),
-            ),
+            Text('Name: $studentName', key: const Key('col-a')),
+            Text('Roll no: $rollNo', key: const Key('col-b')),
+            Text('Course: $course', key: const Key('col-c')),
           ],
         ),
       ],
     );
   }
 }
-
-
 
 class StampStack extends StatelessWidget {
   const StampStack({super.key});
@@ -502,18 +460,12 @@ class StampStack extends StatelessWidget {
         Positioned(
           top: dotTop,
           right: dotRight,
-          child: const Icon(
-            Icons.star,
-            key: Key('dot-top'),
-          ),
+          child: const Icon(Icons.star, key: Key('dot-top')),
         ),
         Positioned(
           bottom: dotBottom,
           left: dotLeft,
-          child: const Icon(
-            Icons.circle,
-            key: Key('dot-bottom'),
-          ),
+          child: const Icon(Icons.circle, key: Key('dot-bottom')),
         ),
       ],
     );
