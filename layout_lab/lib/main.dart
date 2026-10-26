@@ -115,6 +115,10 @@ class HomePage extends StatelessWidget {
             // Keep the remaining widgets here.*/
             const SwapBoard(),
             const SizedBox(height: 12),
+
+            const SizedBox(height: 12),
+                const InfoPanel(),
+                const SizedBox(height: 12),
           ],
         ),
       ),
@@ -340,3 +344,58 @@ class _SwapBoardState extends State<SwapBoard> {
   }
 }
 
+
+
+class InfoPanel extends StatelessWidget {
+  const InfoPanel({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Row: horizontal alignment
+        Row(
+          key: const Key('info-row'),
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              'Start: $startSec s',
+              key: const Key('row-a'),
+            ),
+            Text(
+              'Tick: $tick s',
+              key: const Key('row-b'),
+            ),
+            Text(
+              'Stop: $stopAt s',
+              key: const Key('row-c'),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 12),
+
+        // Column: horizontal cross-axis alignment
+        Column(
+          key: const Key('info-col'),
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              'Name: $studentName',
+              key: const Key('col-a'),
+            ),
+            Text(
+              'Roll no: $rollNo',
+              key: const Key('col-b'),
+            ),
+            Text(
+              'Course: $course',
+              key: const Key('col-c'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
