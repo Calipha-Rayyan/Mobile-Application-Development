@@ -1,5 +1,6 @@
 // main.dart - Team Board lab
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 const String studentName = 'Muhammad Rayyan Bhatti';
@@ -96,6 +97,8 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 12),
             // Add each new widget BELOW the previous one, in the order the
             // steps tell you, with a SizedBox(height: 12) between widgets.
+            const Clock(),
+            const SizedBox(height: 12),
           ],
         ),
       ),
@@ -145,6 +148,45 @@ class SummaryRow extends StatelessWidget {
           key: const Key('sum-c'),
         ),
       ],
+    );
+  }
+}
+
+
+class Clock extends StatefulWidget{
+  const Clock ({super.key});
+
+  @override
+  _ClockState createState() => _ClockState();
+}
+
+class _ClockState extends State<Clock> {
+  late Timer _timer;
+  int _seconds = startSec;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _timer = Timer.periodic(
+      const Duration (seconds: 1),
+      (timer){
+        setState((){
+          _seconds += tick;
+        });
+        if (_seconds >= stopAt){
+          timer.cancel();
+        }
+      },
+
+    );
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return Text(
+      'Session: $_seconds s',
+      key: const Key('clock'),
     );
   }
 }
