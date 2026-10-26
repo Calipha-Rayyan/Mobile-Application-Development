@@ -103,6 +103,9 @@ class HomePage extends StatelessWidget {
             const Clock(),
             const SizedBox(height: 12),
 
+            const ShareRow(),
+            const SizedBox(height: 12),
+
             /*Row(
               children: [
                 Tile(tileA),
@@ -182,6 +185,46 @@ class SummaryRow extends StatelessWidget {
   }
 }
 
+
+class ShareRow extends StatelessWidget {
+  const ShareRow({super.key});
+
+// Expanded uses FlexFit.tight, so it fills its allocated space.
+// Flexible defaults to FlexFit.loose, so its child may be smaller.
+// Swapping their positions changes which button gets each layout behaviour.
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      key: const Key('share-row'),
+      children: [
+        SizedBox(
+          key: const Key('fixed'),
+          width: fixedW,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('F'),
+          ),
+        ),
+        Expanded(
+          flex: flexA,
+          child: ElevatedButton(
+            key: const Key('exp'),
+            onPressed: () {},
+            child: const Text('Exp'),
+          ),
+        ),
+        Flexible(
+          flex: flexB,
+          child: ElevatedButton(
+            key: const Key('flex'),
+            onPressed: () {},
+            child: const Text('Flex'),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 
 class Clock extends StatefulWidget{
