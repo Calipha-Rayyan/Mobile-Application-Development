@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,6 +14,16 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   // This screen keeps its own copy, so the switch moves the moment it is tapped.
   late ThemeMode _mode = widget.mode;
+
+  @override
+  void didUpdateWidget(covariant SettingsScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.mode != widget.mode) {
+      setState(() {
+        _mode = widget.mode;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // TODO block 3: go back to the menu
+                // Return to home menu
                 context.go('/');
               },
               child: const Text('Menu'),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,17 +21,17 @@ class _MyAppState extends State<MyApp> {
 
   late final GoRouter _router = GoRouter(
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const HomeScreen(),
-      ),
+      GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
       GoRoute(
         path: '/detail/:id',
-        builder: (context, state) => DetailScreen(
-          dish: dishes[
-            int.parse(state.pathParameters['id']!)
-          ],
-        ),
+        builder: (context, state) {
+          final idString = state.pathParameters['id'];
+          final id = int.tryParse(idString ?? '0') ?? 0;
+          if (id >= 0 && id < dishes.length) {
+            return DetailScreen(dish: dishes[id]);
+          }
+          return DetailScreen(dish: dishes[0]);
+        },
       ),
       GoRoute(
         path: '/settings',
@@ -41,10 +40,7 @@ class _MyAppState extends State<MyApp> {
           onMode: (m) => setState(() => _mode = m),
         ),
       ),
-      GoRoute(
-        path: '/about',
-        builder: (context, state) => const AboutScreen(),
-      ),
+      GoRoute(path: '/about', builder: (context, state) => const AboutScreen()),
     ],
   );
 
@@ -54,9 +50,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Campus Bites',
       routerConfig: _router,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

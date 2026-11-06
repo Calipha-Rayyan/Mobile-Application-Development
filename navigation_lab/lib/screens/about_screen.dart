@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,8 +19,12 @@ class AboutScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // TODO block 3: go back
-                context.pop();
+                // Go back if there is a screen in history, otherwise return to home
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.go('/');
+                }
               },
               child: const Text('Back'),
             ),

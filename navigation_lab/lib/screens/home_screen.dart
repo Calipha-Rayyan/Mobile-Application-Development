@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
+
 import '../data.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,7 +21,7 @@ class HomeScreen extends StatelessWidget {
                     subtitle: Text('Rs. ${dishes[i].price}'),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
-                      // TODO block 2: open the detail page for dishes[i]
+                      // Open detail page for dishes[i]
                       context.push('/detail/$i');
                     },
                   ),
@@ -36,14 +35,14 @@ class HomeScreen extends StatelessWidget {
               children: [
                 OutlinedButton(
                   onPressed: () {
-                    // TODO block 3: open the settings page
+                    // Open settings page
                     context.go('/settings');
                   },
                   child: const Text('Settings'),
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    // TODO block 3: open the about page
+                    // Open about page
                     context.push('/about');
                   },
                   child: const Text('About'),
