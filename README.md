@@ -1,6 +1,6 @@
 # Mobile Application Development (MAD)
 
-A centralized repository for coursework, lab assignments, Dart practice programs, and projects developed as part of the **Mobile Application Development** course at Quaid-i-Azam University, Islamabad.
+A centralized repository for coursework, lab assignments, Flutter projects, Dart practice programs, and layout demonstrations developed as part of the **Mobile Application Development** course at Quaid-i-Azam University, Islamabad.
 
 This repository organizes practical work in one place, making it easier to develop, maintain, review, and submit coursework while tracking progress through Git and GitHub.
 
@@ -30,9 +30,41 @@ Mobile-Application-Development/
 │   └── output.txt
 │
 ├── my_first_app/
+│   └── ... (First Flutter application setup)
+│
+├── flutter_lab/
+│   └── ... (Introductory Flutter widgets & state lab)
+│
+├── layout_lab/
+│   ├── lib/
+│   │   ├── main.dart
+│   │   ├── ANSWERS.md
+│   │   ├── screenshot.png
+│   │   └── Screenshot 2.png
+│   └── ...
+│
+├── navigation_lab/
+│   ├── lib/
+│   │   ├── screens/
+│   │   │   ├── about_screen.dart
+│   │   │   ├── detail_screen.dart
+│   │   │   ├── home_screen.dart
+│   │   │   └── settings_screen.dart
+│   │   ├── data.dart
+│   │   └── main.dart
+│   ├── pubspec.yaml
+│   └── README.md
+│
+├── demo15a_column_axes.dart
+├── demo15b_row_main_axis.dart
+├── demo16_overflow.dart
+├── demo17_expanded_flexible.dart
+├── demo18_container.dart
+├── demo19_stack.dart
 │
 ├── Animal.dart
 ├── Animal1.dart
+├── clock_demo.dart
 ├── equalequal.dart
 ├── Hello_Dart.dart
 ├── input_output.dart
@@ -43,47 +75,47 @@ Mobile-Application-Development/
 ├── PaymentMethod.dart
 ├── safety_null.dart
 ├── Shape.dart
+├── .gitignore
 └── README.md
 ```
-
-*Note: The structure above summarizes the known projects and files. Update it when the repository changes.*
 
 ## Projects and Lab Assignments
 
 ### 1. Campus Cafe Order System
 
-A Dart-based project that demonstrates object-oriented programming and a simple cafe ordering workflow.
+A Dart-based project that demonstrates object-oriented programming and a complete cafe ordering workflow.
 
 **Concepts covered:**
-- Classes and objects
-- Constructors and named constructors
-- Factory constructors
-- Initializer lists
-- Assertions
-- Getters and setters
-- Collections
-- Receipt generation
-- Discount coupons
+- Classes, encapsulation, and objects
+- Default, named, and factory constructors
+- Initializer lists and assertions
+- Getters, setters, and calculated values
+- Collections and receipt generation
+- Discount coupon handling
 
-**Main file:** `Campus_Cafe_Order_System.dart`
+**Main file:** `Campus Cafe Order System/Campus_Cafe_Order_System.dart`
+
+---
 
 ### 2. Course Roster Manager
 
-A course project focused on organizing and managing course roster information using Dart.
+A course project focused on organizing and managing student course roster information using Dart collections and data models.
 
-**Main file:** `course_roster.dart`
+**Main file:** `Course Roster Manager/course_roster.dart`
+
+---
 
 ### 3. Library Desk Assistant
 
-A Dart-based lab project that models a library desk assistant workflow and applies programming fundamentals to a practical scenario.
+A Dart-based lab project that models library desk operations, lending rules, and practical assistant workflows.
 
-**Main file:** `Library_Desk_Assistant.dart`
+**Main file:** `Library Desk Assistant/Library_Desk_Assistant.dart`
 
-Supporting images and project documentation are maintained alongside the project files.
+---
 
 ### 4. Campus Library System — OOP Lab
 
-This lab focuses on object-oriented programming concepts through a small library management system.
+A comprehensive lab focusing on object-oriented programming paradigms in Dart.
 
 **Main file:** `oop_lab/library_lab.dart`
 
@@ -92,139 +124,134 @@ This lab focuses on object-oriented programming concepts through a small library
 - Abstract classes and interfaces
 - Mixins and enhanced enums
 - Extension methods
-- Operator overloading
-- Equality and hash codes
+- Operator overloading, equality, and hash codes
 - Static members and constant objects
 - Late-fee calculation and member discounts
 
-**Supporting files:**
-- `ANSWERS.md` — reflection answers
-- `output.txt` — program output
+---
 
-### 5. Dart Practice Programs
+### 5. Flutter Layout Lab (`layout_lab`)
 
-The repository also contains individual Dart programs for practicing core language concepts.
+A Flutter application lab dedicated to mastering Flutter layout concepts, component composition, and responsive screen design.
+
+**Topics covered:**
+- Row, Column, and nested layouts
+- Expanded, Flexible, and SizedBox widgets
+- Alignment, padding, and spacing
+- Layout questions and visual verification (`ANSWERS.md` and screenshots)
+
+---
+
+### 6. Navigation Lab — Campus Bites (`navigation_lab`)
+
+A Flutter application demonstrating multi-screen navigation and declarative routing with `go_router`.
+
+**Features:**
+- **Declarative Routing:** Configured route paths including parameterised routes (`/detail/:id`)
+- **Screens:**
+  - `HomeScreen`: Displays a catalog of campus dishes
+  - `DetailScreen`: Displays dish details passed via route parameters
+  - `SettingsScreen`: Theme mode selection (Light/Dark mode)
+  - `AboutScreen`: Application overview and info
+- **Dynamic Theming:** Light and dark theme switching using `MaterialApp.router`
+
+---
+
+### 7. Flutter Layout Demonstrations
+
+Standalone Flutter layout scripts illustrating fundamental layout widgets:
+
+| File | Topic & Concept |
+|---|---|
+| `demo15a_column_axes.dart` | Main axis vs. cross axis alignment in a `Column` |
+| `demo15b_row_main_axis.dart` | Six values of `MainAxisAlignment` in a `Row` |
+| `demo16_overflow.dart` | Handling render overflow issues and fixing them with `Expanded` |
+| `demo17_expanded_flexible.dart` | Differences and flex ratios between `Expanded` and `Flexible` |
+| `demo18_container.dart` | Box decoration, margins, padding, and constraints with `Container` |
+| `demo19_stack.dart` | Layering widgets using `Stack` and `Positioned` |
+
+---
+
+### 8. Dart Practice Programs
+
+Individual Dart programs for practicing language features and fundamentals:
 
 | File | Purpose |
 |---|---|
-| `Hello_Dart.dart` | Basic Dart program |
-| `input_output.dart` | Input and output |
-| `interpolation.dart` | String interpolation |
-| `safety_null.dart` | Null safety |
-| `Animal.dart` and `Animal1.dart` | Animal-related class exercises |
-| `equalequal.dart` | Equality operator practice |
-| `logging.dart` | Logging practice |
-| `MixExample.dart` | Mixin examples |
-| `Overloading.dart` | Operator overloading |
-| `PaymentMethod.dart` | Payment method and class concepts |
-| `Shape.dart` | Shape-related class exercises |
-| `my_first_app/` | Application practice |
+| `Hello_Dart.dart` | First Dart program |
+| `input_output.dart` | Standard input and output handling |
+| `interpolation.dart` | String interpolation techniques |
+| `safety_null.dart` | Null safety mechanisms and operators |
+| `Animal.dart` & `Animal1.dart` | Class hierarchy and OOP exercises |
+| `clock_demo.dart` | Clock and periodic execution simulation |
+| `equalequal.dart` | Object equality comparison |
+| `logging.dart` | Logging utilities and patterns |
+| `MixExample.dart` | Mixin composition and reuse |
+| `Overloading.dart` | Operator overloading in Dart |
+| `PaymentMethod.dart` | Polymorphism with payment methods |
+| `Shape.dart` | Abstract shapes and area calculation |
+| `my_first_app/` | Initial Flutter exploration |
+| `flutter_lab/` | Flutter introductory widget lab |
 
 ## Getting Started
 
 ### Prerequisites
 
-Install the Dart SDK and Git, and use an editor such as Visual Studio Code.
+Install Flutter and the Dart SDK, and use an editor such as Visual Studio Code or Android Studio.
 
-Check that Dart is available in your terminal:
+Verify your environment:
 
 ```powershell
+flutter doctor
 dart --version
 ```
 
-### Run a Dart Program
+### Running Dart Programs
 
-For a root-level Dart file:
+For a root-level Dart practice program:
 
 ```powershell
 dart run Hello_Dart.dart
 ```
 
-For the Campus Cafe Order System:
+For the Campus Cafe Order System (with assertions enabled):
 
 ```powershell
 dart run --enable-asserts "Campus Cafe Order System/Campus_Cafe_Order_System.dart"
 ```
 
-For the Campus Library System lab:
+For the OOP Library Lab:
 
 ```powershell
 dart run --enable-asserts oop_lab/library_lab.dart
 ```
 
-### Format and Analyze Code
+### Running Flutter Applications & Demos
 
-Format the repository's Dart files:
-
-```powershell
-dart format .
-```
-
-Analyze the Dart code:
+To run the Navigation Lab:
 
 ```powershell
-dart analyze .
+cd navigation_lab
+flutter pub get
+flutter run
 ```
 
-Review and resolve relevant errors or warnings before submitting coursework.
-
-## Git and GitHub Workflow
-
-Keep changes organized and use meaningful commit messages that describe the work completed.
-
-Check the current changes:
+To run a layout demo (e.g., `demo15a_column_axes.dart`):
 
 ```powershell
-git status
+flutter run -t demo15a_column_axes.dart
 ```
-
-Stage a specific file:
-
-```powershell
-git add README.md
-```
-
-Create a meaningful commit:
-
-```powershell
-git commit -m "docs: improve repository documentation"
-```
-
-Push committed changes to GitHub:
-
-```powershell
-git push origin main
-```
-
-For labs with required checkpoints, follow the instructor's specified commit order and message format.
-
-## Repository Organization
-
-The repository uses a simple structure:
-
-- **Project folders** contain related source code, documentation, and supporting files.
-- **Root-level Dart files** contain smaller practice exercises.
-- **Lab folders** keep assignment code, reflection answers, and output files together.
-- **Git history** records changes and helps track development progress.
 
 ## Technology Stack
 
-- Dart
-- Dart SDK
-- Git
-- GitHub
-- Visual Studio Code
-
-## Purpose
-
-The goal of this repository is to maintain an organized record of Mobile Application Development coursework, including lab submissions, individual programming exercises, and small projects.
-
-It serves as a reference for revision, practical learning, debugging, project development, and version-controlled coursework submission.
+- **Languages:** Dart
+- **Framework:** Flutter
+- **Routing:** `go_router`
+- **Tools:** Git, GitHub, Visual Studio Code
 
 ## Author
 
-**Muhammad Rayyan Bhatti**
-
+**Muhammad Rayyan Bhatti**  
 Computer Science  
 Quaid-i-Azam University, Islamabad
 
