@@ -1,6 +1,6 @@
 # Mobile Application Development (MAD)
 
-A centralized repository for coursework, lab assignments, Flutter projects, Dart practice programs, and layout demonstrations developed as part of the **Mobile Application Development** course at Quaid-i-Azam University, Islamabad.
+A centralized repository for coursework, lab assignments, Flutter projects, Dart practice programs, state management labs, Firebase integrations, and layout demonstrations developed as part of the **Mobile Application Development** course at Quaid-i-Azam University, Islamabad.
 
 This repository organizes practical work in one place, making it easier to develop, maintain, review, and submit coursework while tracking progress through Git and GitHub.
 
@@ -54,6 +54,37 @@ Mobile-Application-Development/
 │   │   └── main.dart
 │   ├── pubspec.yaml
 │   └── README.md
+│
+├── Riverpod/
+│   ├── lib/
+│   │   ├── cart_badge.dart
+│   │   ├── cart_provider.dart
+│   │   ├── counter_page.dart
+│   │   ├── data.dart
+│   │   ├── detail_screen.dart
+│   │   ├── home_screen.dart
+│   │   ├── json_demo.dart
+│   │   └── main.dart
+│   ├── LAB_ANSWERS.md
+│   └── README.md
+│
+├── Flutter/
+│   └── counter_demo/
+│       ├── lib/
+│       │   ├── firebase_demo_main.dart
+│       │   ├── firebase_options.dart
+│       │   ├── task.dart
+│       │   ├── task.freezed.dart
+│       │   └── task.g.dart
+│       ├── android/
+│       ├── ios/
+│       ├── linux/
+│       ├── macos/
+│       ├── web/
+│       ├── windows/
+│       ├── firebase.json
+│       ├── pubspec.yaml
+│       └── README.md
 │
 ├── demo15a_column_axes.dart
 ├── demo15b_row_main_axis.dart
@@ -157,7 +188,42 @@ A Flutter application demonstrating multi-screen navigation and declarative rout
 
 ---
 
-### 7. Flutter Layout Demonstrations
+### 7. Riverpod State Management & REST Lab (`Riverpod/`)
+
+A comprehensive lab focusing on shared application state management using Riverpod (`flutter_riverpod`) and REST API consumption in Flutter.
+
+**Key Architecture & Concepts:**
+- **`ProviderScope`:** Enclosing root widget (`lib/main.dart`) that stores all provider states.
+- **`StateNotifier` & `StateNotifierProvider`:** Encapsulates state mutation logic in `lib/cart_provider.dart`.
+- **Immutable State Updates:** Demonstrates safe collection updating (`state = [...state, dish]`) to trigger dependent widget rebuilds without in-place mutation bugs.
+- **Reactive UI (`ref.watch`):** `lib/cart_badge.dart` automatically updates the cart count on both catalog (`HomeScreen`) and product pages (`DetailScreen`).
+- **Targeted Reading (`ref.read`):** Used inside action handlers (e.g. `counter_page.dart`) without unneeded rebuilds.
+- **REST & JSON Handling:** `lib/json_demo.dart` demonstrates fetching and parsing JSON into structured Dart objects.
+- **Lab Q&A (`LAB_ANSWERS.md`):** Complete conceptual explanations of `setState` limitations, lifting state up, Riverpod notifiers, and REST endpoints.
+
+---
+
+### 8. Firebase, Firestore & Freezed Task Manager (`Flutter/counter_demo/`)
+
+A production-style Flutter application demonstrating cloud authentication, real-time NoSQL database persistence, code generation, and reactive state management.
+
+**Key Components & Architecture:**
+- **Firebase Authentication (`lib/firebase_demo_main.dart`):**
+  - Reactive auth state monitoring via `StreamProvider<User?>` (`authStateProvider`).
+  - `AuthGate` dynamically switches between authentication and main application screens.
+  - User registration and login with comprehensive `FirebaseAuthException` error handling.
+- **Cloud Firestore Real-Time CRUD:**
+  - Real-time task synchronization via Firestore collection snapshots (`snapshots().map(...)`).
+  - Interactive task creation, status toggling, and deletion.
+- **Immutable Models with Freezed (`lib/task.dart`):**
+  - Generates immutable `Task` data models using `freezed` and `json_serializable`.
+  - Type-safe JSON serialization (`task.g.dart`) and copy-with utilities (`task.freezed.dart`).
+- **FlutterFire Multiplatform Configuration:**
+  - Platform-specific initialization in `lib/firebase_options.dart` and `android/app/google-services.json`.
+
+---
+
+### 9. Flutter Layout Demonstrations
 
 Standalone Flutter layout scripts illustrating fundamental layout widgets:
 
@@ -172,7 +238,7 @@ Standalone Flutter layout scripts illustrating fundamental layout widgets:
 
 ---
 
-### 8. Dart Practice Programs
+### 10. Dart Practice Programs
 
 Individual Dart programs for practicing language features and fundamentals:
 
@@ -228,7 +294,7 @@ dart run --enable-asserts oop_lab/library_lab.dart
 
 ### Running Flutter Applications & Demos
 
-To run the Navigation Lab:
+#### Navigation Lab:
 
 ```powershell
 cd navigation_lab
@@ -236,7 +302,27 @@ flutter pub get
 flutter run
 ```
 
-To run a layout demo (e.g., `demo15a_column_axes.dart`):
+#### Riverpod & REST Lab:
+
+```powershell
+# Copy Riverpod/lib into your Flutter project or run standalone examples:
+dart run Riverpod/lib/json_demo.dart
+```
+
+#### Firebase Task Manager (`Flutter/counter_demo`):
+
+```powershell
+cd Flutter/counter_demo
+flutter pub get
+
+# Generate Freezed and JSON models if modified:
+dart run build_runner build --delete-conflicting-outputs
+
+# Run the Firebase demo application:
+flutter run -t lib/firebase_demo_main.dart
+```
+
+#### Standalone Layout Demos:
 
 ```powershell
 flutter run -t demo15a_column_axes.dart
@@ -244,9 +330,12 @@ flutter run -t demo15a_column_axes.dart
 
 ## Technology Stack
 
-- **Languages:** Dart
+- **Languages:** Dart (3.x)
 - **Framework:** Flutter
 - **Routing:** `go_router`
+- **State Management:** Riverpod (`flutter_riverpod`)
+- **Backend & Cloud:** Firebase Auth (`firebase_auth`), Cloud Firestore (`cloud_firestore`), Firebase Core (`firebase_core`)
+- **Code Generation & Serialization:** Freezed (`freezed`, `freezed_annotation`), JSON Serializable (`json_serializable`, `json_annotation`), Build Runner (`build_runner`)
 - **Tools:** Git, GitHub, Visual Studio Code
 
 ## Author
