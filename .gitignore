@@ -44,3 +44,6 @@
 # Symbolication and Obfuscation
 app.*.symbols
 app.*.map.json
+
+# Firebase configuration secrets
+**/firebase_options.dart
